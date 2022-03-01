@@ -17,7 +17,23 @@
 </head>
 
 <body>
-    <h1 id="clicked">Phone Hunter Khadiza</h1>
+
+    <header class="m-3 p-2 bg-danger rounded">
+        <h2 class="bg-info m-2 p-3 rounded text-center"><span>HADIYA</span> PHONES BRAND</h2>
+    </header>
+    <main>
+        <div class="input-group my-5 mx-auto w-75">
+            <input id="search-field" type="text" class="form-control border-2" placeholder="Find Phones "
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button onclick="searchPhone()" class="btn btn-outline-info fw-bold text-black-50 border-2 type=" button"
+                id="button-search">Search</button>
+        </div>
+    </main>
+
+    <!-- result phone db  -->
+    <div id="search-result" class="container row row-cols-1 row-cols-md-3 g-4">
+
+    </div>
 
 
     <!-- bootstrap script style link  -->
