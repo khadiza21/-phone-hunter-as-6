@@ -25,4 +25,4 @@
 - Bootstrap5
 - JS (DOM) , JS ES6 , API
 
-<img src="images/451001.jpg" alt="phone-hunter">
+<img src="images/s.png" alt="phone-hunter">

@@ -1,16 +1,17 @@
-// text?.text?.text || 'Info will provide soon'
 // search all products phone or others and get api data
 
 const searchPhone = () => {
   const searchField = document.getElementById("search-field");
-  const searchText = searchField.value;
+  const searchText = searchField.value.toLowerCase();
 
+  console.log(searchText);
+  console.log(typeof searchText);
   //   clear data
   searchField.value = "";
   const error = document.getElementById("error");
   if (searchText === "") {
     //   please write something to display
-    alert("please write something to display");
+    // alert("please write something to display");
     error.innerText = "Please enter a phone name!";
   } else {
     //   load data
@@ -20,8 +21,8 @@ const searchPhone = () => {
       .then((res) => res.json())
       .then((data) => {
         displaySearchResult(data.data.slice(0, 20));
-        error.innerHTML ='';
-        
+
+        searchField.value = "";
       });
   }
 };
@@ -80,7 +81,7 @@ const loadPhoneDetail = (phoneIdenty) => {
 const displayPhoneDetails = (details) => {
   const phoneDetails = document.getElementById("phone-details");
   phoneDetails.textContent = "";
-  phoneDetails.textContent = "";
+  phoneDetails.innerHTML = "";
   const div = document.createElement("div");
   div.classList.add("card");
   div.innerHTML = `
@@ -90,10 +91,6 @@ const displayPhoneDetails = (details) => {
    }" class="card-img-top detailImg mx-auto w-75  pt-2 my-4" alt="This is ${
     details.name
   } picture">
-
- 
-
-
   </div>
  
   <div class="card-body fs-5 p-5">
