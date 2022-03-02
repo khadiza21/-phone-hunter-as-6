@@ -24,23 +24,29 @@ const searchPhone = () => {
 //get search item name and display all serch data
 const displaySearchResult = (phones) => {
   const searchResult = document.getElementById("search-result");
-  searchResult.innerHTML = "";
-  searchResult.textContent = "";
 
-  if (phones === null) {
+  // searchResult.innerHTML = "";
+  console.log(phones.length);
+  searchResult.textContent = "";
+  console.log(phones.length);
+  const checking = phones.length;
+  if (checking === 0) {
     //show no result found
     alert("no result found");
+    console.log("no");
   }
   phones?.forEach((phone) => {
     const div = document.createElement("div");
+
     div.classList.add("col");
     div.innerHTML = `
-      <div onclick="loadPhoneDetail('${phone.slug}')" class="card">
+      <div class="card">
       <img src="${phone.image}" class="card-img-top img" alt="This is ${phone.phone_name} picture">
       <div class="card-body">
         <h5 class="card-title">${phone.brand}</h5>
         <p class="card-text">${phone.phone_name}</p>
         <p class="card-text">${phone.slug}</p>
+        <button  onclick="loadPhoneDetail('${phone.slug}')"  class="btn btn-info fw-bold">Details </button>
       </div>
      
     </div>`;
@@ -55,56 +61,52 @@ const loadPhoneDetail = (phoneIdenty) => {
     .then((res) => res.json())
     .then((data) => {
       displayPhoneDetails(data.data);
+      //  console.log(data.data.others.Bluetooth);
       console.log(data.data);
-      console.log(data.data.brand);
-      console.log(data.data.name);
-      console.log(data.data.image);
-      console.log(data.data.mainFeatures.displaySize);
-      console.log(data.data.mainFeatures.storage);
-      console.log(data.data.releaseDate);
-      console.log(data.data.slug);
-      console.log(data.data.mainFeatures.sensors[0]);
-      // console.log(data.data.mainFeatures.sensors.slice(0,5));
-      console.log(data.data.others);
     });
 };
 
+// display Phone Details
 const displayPhoneDetails = (details) => {
-  //console.log(details);
-  //const sensor =details.mainFeatures.sensors;
   const phoneDetails = document.getElementById("phone-details");
+  //console.log(details.others)
+  phoneDetails.textContent = "";
   const div = document.createElement("div");
   div.classList.add("card");
-
-  for (let i = 0; i < details.mainFeatures.sensors.length; i++) {
-   // let sensorInfo = ;
- console.log(details?.mainFeatures?.sensors[i]);
-  }
-
   div.innerHTML = `
   <img src="${details.image}" class="card-img-top" alt="This is ${
     details.name
   } picture">
   <div class="card-body">
-
-      <h5 class="card-title">Brand Name: ${details.brand}</h5>
-     
+  <h5 class="card-title">Brand Name: ${details.brand}</h5>
+      <h6><span class="fw-bold">Released:</span> ${
+        details.releaseDate
+          ? details.releaseDate
+          : `<h6>No Release Date Found </h6> `
+      }</h6>
       <p class="card-text"> Name:  ${details.name}</p>
       <p class="card-text">Display Size: ${details.mainFeatures.displaySize}</p>
       <p class="card-text">Storage: ${details.mainFeatures.storage}</p>
-      <p class="card-text">Release Date: ${details.releaseDate}</p>
-      <p class="card-text">Slug: ${details.slug}</p>
-      <p class="card-text " id="sensor">Sensors: ${
-        details.mainFeatures.sensors[0]
-      }</p>
-      <p class="card-text">Others: ${
-        details?.mainFeatures?.others || "Info will provide soon"
-      }</p>
-     
-     
-   
+       <p class="card-text">Slug: ${details.slug}</p>
+      <span class="card-text " id="sensor">Sensors: ${
+        details.mainFeatures.sensors
+      }</span>
+      <p class="card-text">Bluetooth: ${
+        details?.others?.Bluetooth || "Info will provide soon"
+      }</p>   
+      <p class="card-text">GPS: ${
+        details?.others?.GPS || "Info will provide soon"
+      }</p>   
+      <p class="card-text">Radio: ${
+        details?.others?.Radio || "Info will provide soon"
+      }</p>   
+      <p class="card-text">USB: ${
+        details?.others?.USB || "Info will provide soon"
+      }</p>   
+      <p class="card-text">WLAN: ${
+        details?.others?.WLAN || "Info will provide soon"
+      }</p>   
   </div>
   `;
   phoneDetails.appendChild(div);
 };
-//  <p class="card-text">${details.strInstructions.slice(0, 150)}</p>
