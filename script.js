@@ -1,14 +1,17 @@
 // text?.text?.text || 'Info will provide soon'
 // search all products phone or others and get api data
+
 const searchPhone = () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
 
   //   clear data
   searchField.value = "";
-  if (searchText == "") {
+  const error = document.getElementById("error");
+  if (searchText === "") {
     //   please write something to display
     alert("please write something to display");
+    error.innerText = "Please enter a phone name!";
   } else {
     //   load data
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -17,6 +20,8 @@ const searchPhone = () => {
       .then((res) => res.json())
       .then((data) => {
         displaySearchResult(data.data.slice(0, 20));
+        error.innerHTML ='';
+        
       });
   }
 };
@@ -32,8 +37,11 @@ const displaySearchResult = (phones) => {
   const checking = phones.length;
   if (checking === 0) {
     //show no result found
-    alert("no result found");
+    // alert("no result found");
     console.log("no");
+    searchResult.innerHTML = `
+    <h1 class="text-center my-4 text-warning">No Result Found!</h1>
+    `;
   }
   phones?.forEach((phone) => {
     const div = document.createElement("div");
@@ -72,6 +80,7 @@ const loadPhoneDetail = (phoneIdenty) => {
 const displayPhoneDetails = (details) => {
   const phoneDetails = document.getElementById("phone-details");
   phoneDetails.textContent = "";
+  phoneDetails.textContent = "";
   const div = document.createElement("div");
   div.classList.add("card");
   div.innerHTML = `
@@ -82,39 +91,44 @@ const displayPhoneDetails = (details) => {
     details.name
   } picture">
 
-  <p class="fw-bold">Released: ${
-    details?.releaseDate || "No Release Date Found"
-  }</p>   
+ 
 
 
   </div>
  
-  <div class="card-body fw-bold p-5">
-  <h5 class="card-title">Brand: ${details.brand}</h5>
+  <div class="card-body fs-5 p-5">
+  <h5 class="card-title"><span>Brand: </span>  ${details.brand}</h5>
      
-      <p class="card-text">Name: ${details.name}</p>
-      <p class="card-text">Display Size: ${details.mainFeatures.displaySize}</p>
-      <p class="card-text">Storage: ${details.mainFeatures.storage}</p>
-       <p class="card-text">Slug: ${details.slug}</p>
+      <p class="card-text"><span>Name: </span> ${details.name}</p>
+      <p ><span>Released: </span> ${
+        details?.releaseDate || "No Release Date Found"
+      }</p>  
+      <p class="card-text"><span>Display Size: </span> ${
+        details.mainFeatures.displaySize
+      }</p>
+      <p class="card-text"><span>Storage: </span> ${
+        details.mainFeatures.storage
+      }</p>
+       <p class="card-text"><span>Slug: </span>  ${details.slug}</p>
        
        
-      <span class="card-text my-2" >Sensors: ${
+      <span class="card-text my-2 fw-normal" > <span>Sensors: </span> ${
         details.mainFeatures.sensors
       }</span>
-      <h5 class="card-text mt-4">Others: </h5>
-      <p class="card-text">Bluetooth: ${
+      <h4 class="card-text fw-bold mt-4 text-info">Others: </h4>
+      <p class="card-text"><span>Bluetooth: </span> ${
         details?.others?.Bluetooth || "Info will provide soon"
       }</p>   
-      <p class="card-text">GPS: ${
+      <p class="card-text"><span>GPS: </span> ${
         details?.others?.GPS || "Info will provide soon"
       }</p>   
-      <p class="card-text">Radio: ${
+      <p class="card-text"><span>Radio: </span> ${
         details?.others?.Radio || "Info will provide soon"
       }</p>   
-      <p class="card-text">USB: ${
+      <p class="card-text"><span>USB: </span> ${
         details?.others?.USB || "Info will provide soon"
       }</p>   
-      <p class="card-text">WLAN: ${
+      <p class="card-text"><span>WLAN: </span> ${
         details?.others?.WLAN || "Info will provide soon"
       }</p>   
   </div>

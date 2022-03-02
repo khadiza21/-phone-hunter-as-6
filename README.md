@@ -1,6 +1,6 @@
 # Phone Hunter- JS ES6 & API
 
-## Live Site Link: https://thirsty-poitras-7e0cb5.netlify.app/
+## Live Site Link: https://phone-hunter-21.netlify.app/
 
 ### Github Code Link: https://github.com/programming-hero-web-course2/phone-hunter-khadiza21
 

@@ -7,9 +7,6 @@ body {
   padding: 0%;
   font-family: "Poppins", sans-serif;
 }
-
-.detailImg{
-  height: 250px;
- 
-  
+span {
+  font-weight: bold;
 }
