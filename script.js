@@ -40,13 +40,14 @@ const displaySearchResult = (phones) => {
 
     div.classList.add("col");
     div.innerHTML = `
-      <div class="card">
-      <img src="${phone.image}" class="card-img-top img" alt="This is ${phone.phone_name} picture">
-      <div class="card-body">
-        <h5 class="card-title">${phone.brand}</h5>
-        <p class="card-text">${phone.phone_name}</p>
-        <p class="card-text">${phone.slug}</p>
-        <button  onclick="loadPhoneDetail('${phone.slug}')"  class="btn btn-info fw-bold">Details </button>
+      <div class="card border-0 shadow my-2">
+      <img src="${phone.image}" class="card-img-top img p-5 w-75 mx-auto" alt="This is ${phone.phone_name} picture">
+      <div class="card-body px-3 pb-4">
+      <h5 class="card-title fs-4 fw-bold ">Brand : ${phone.brand}</h5>
+      <p class="card-text fs-5 fw-bold">Name : ${phone.phone_name}</p>
+      <p class="card-text fs-6 fw-bold">Phone Slug${phone.slug}</p>
+      <button  onclick="loadPhoneDetail('${phone.slug}')"  class="btn btn-info fw-bold w-100">Details </button>
+      
       </div>
      
     </div>`;
