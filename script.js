@@ -25,8 +25,8 @@ const searchPhone = () => {
 const displaySearchResult = (phones) => {
   const searchResult = document.getElementById("search-result");
 
-  // searchResult.innerHTML = "";
-  console.log(phones.length);
+  searchResult.innerHTML = "";
+  // console.log(phones.length);
   searchResult.textContent = "";
   console.log(phones.length);
   const checking = phones.length;
@@ -41,11 +41,11 @@ const displaySearchResult = (phones) => {
     div.classList.add("col");
     div.innerHTML = `
       <div class="card border-0 shadow my-2">
-      <img src="${phone.image}" class="card-img-top img p-5 w-75 mx-auto" alt="This is ${phone.phone_name} picture">
+      <img src="${phone.image}" class="card-img-top img py-5 img-fluid w-50 mx-auto " alt="This is ${phone.phone_name} picture">
       <div class="card-body px-3 pb-4">
-      <h5 class="card-title fs-4 fw-bold ">Brand : ${phone.brand}</h5>
+      <h5 class="card-title fs-3 fw-bold ">Brand : ${phone.brand}</h5>
       <p class="card-text fs-5 fw-bold">Name : ${phone.phone_name}</p>
-      <p class="card-text fs-6 fw-bold">Phone Slug${phone.slug}</p>
+      <p class="card-text fs-6 fw-bold">Slug-Code: ${phone.slug}</p>
       <button  onclick="loadPhoneDetail('${phone.slug}')"  class="btn btn-info fw-bold w-100">Details </button>
       
       </div>
@@ -57,6 +57,7 @@ const displaySearchResult = (phones) => {
 
 // load individual phone details form api link
 const loadPhoneDetail = (phoneIdenty) => {
+  console.log(phoneIdenty);
   const url = ` https://openapi.programming-hero.com/api/phone/${phoneIdenty}`;
   fetch(url)
     .then((res) => res.json())
@@ -70,28 +71,37 @@ const loadPhoneDetail = (phoneIdenty) => {
 // display Phone Details
 const displayPhoneDetails = (details) => {
   const phoneDetails = document.getElementById("phone-details");
-  //console.log(details.others)
   phoneDetails.textContent = "";
   const div = document.createElement("div");
   div.classList.add("card");
   div.innerHTML = `
-  <img src="${details.image}" class="card-img-top" alt="This is ${
+  <div class="mx-auto w-75 text-center">
+   <img src="${
+     details.image
+   }" class="card-img-top detailImg mx-auto w-75  pt-2 my-4" alt="This is ${
     details.name
   } picture">
-  <div class="card-body">
-  <h5 class="card-title">Brand Name: ${details.brand}</h5>
-      <h6><span class="fw-bold">Released:</span> ${
-        details.releaseDate
-          ? details.releaseDate
-          : `<h6>No Release Date Found </h6> `
-      }</h6>
-      <p class="card-text"> Name:  ${details.name}</p>
+
+  <p class="fw-bold">Released: ${
+    details?.releaseDate || "No Release Date Found"
+  }</p>   
+
+
+  </div>
+ 
+  <div class="card-body fw-bold p-5">
+  <h5 class="card-title">Brand: ${details.brand}</h5>
+     
+      <p class="card-text">Name: ${details.name}</p>
       <p class="card-text">Display Size: ${details.mainFeatures.displaySize}</p>
       <p class="card-text">Storage: ${details.mainFeatures.storage}</p>
        <p class="card-text">Slug: ${details.slug}</p>
-      <span class="card-text " id="sensor">Sensors: ${
+       
+       
+      <span class="card-text my-2" >Sensors: ${
         details.mainFeatures.sensors
       }</span>
+      <h5 class="card-text mt-4">Others: </h5>
       <p class="card-text">Bluetooth: ${
         details?.others?.Bluetooth || "Info will provide soon"
       }</p>   
