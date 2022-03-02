@@ -85,13 +85,13 @@ const displayPhoneDetails = (details) => {
   const div = document.createElement("div");
   div.classList.add("card");
   div.innerHTML = `
-  <div class="mx-auto w-75 text-center">
+  
    <img src="${
      details.image
-   }" class="card-img-top detailImg mx-auto w-75  pt-2 my-4" alt="This is ${
+   }" class="card-img-top  mx-auto w-25 h-50  pt-2 my-4" alt="This is ${
     details.name
   } picture">
-  </div>
+
  
   <div class="card-body fs-5 p-5">
   <h5 class="card-title"><span>Brand: </span>  ${details.brand}</h5>
