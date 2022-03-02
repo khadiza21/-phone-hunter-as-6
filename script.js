@@ -106,9 +106,16 @@ const displayPhoneDetails = (details) => {
       <p class="card-text"><span>Storage: </span> ${
         details.mainFeatures.storage
       }</p>
+      <p class="card-text"><span>Memory: </span> ${
+        details.mainFeatures.memory
+      }</p>
+      <p class="card-text"><span>Chip Set: </span> ${
+        details.mainFeatures.chipSet
+      }</p>
        <p class="card-text"><span>Slug: </span>  ${details.slug}</p>
        
        
+         
       <span class="card-text my-2 fw-normal" > <span>Sensors: </span> ${
         details.mainFeatures.sensors
       }</span>
